@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple Tailwind CSS v4 installation guide for HTML, Tailwind CSS, and JavaScript."
+    />
+    <title>Tailwind CSS v4 // Installation Guide</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+              mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular"],
+            },
+            colors: {
+              ink: "#050b16",
+              panel: "#0b1424",
+              electric: "#20d7ff",
+              "electric-soft": "#8beeff",
+            },
+            boxShadow: {
+              neon: "0 0 0 1px rgba(32,215,255,.18), 0 0 28px rgba(32,215,255,.12)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at 50% -10%, rgba(32, 215, 255, 0.14), transparent 34rem),
+          radial-gradient(circle at 0% 45%, rgba(30, 64, 175, 0.13), transparent 30rem),
+          #050b16;
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+        opacity: 0.2;
+        background-image: linear-gradient(rgba(139, 238, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 238, 255, 0.04) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, black, transparent 80%);
+      }
+
+      ::selection {
+        color: #050b16;
+        background: #20d7ff;
+      }
+
+      .code-scroll::-webkit-scrollbar {
+        height: 6px !important;
+      }
+
+      .code-scroll::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+
+      .code-scroll::-webkit-scrollbar-thumb {
+        background: #e2e8f0 !important;
+        border-radius: 3px !important;
+      }
+
+      .code-scroll::-webkit-scrollbar-thumb:hover {
+        background: #f1f5f9 !important;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #f1f5f9;
+      }
+
+      .active-link {
+        color: #8beeff;
+        border-color: rgba(32, 215, 255, 0.9);
+        background: rgba(32, 215, 255, 0.08);
+      }
+
+      .step-done .step-number {
+        color: #04131c;
+        background: #20d7ff;
+        box-shadow: 0 0 18px rgba(32, 215, 255, 0.5);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden text-slate-200 antialiased">
+    <header class="border-b border-cyan-300/10 bg-ink/75 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#top" class="flex items-center gap-3" aria-label="Tailwind installation guide home">
+          <span
+            class="grid h-9 w-9 place-items-center rounded-lg border border-electric/60 bg-electric/10 font-mono text-sm font-semibold text-electric shadow-neon"
+            >//</span
+          >
+          <span class="font-display text-sm font-semibold tracking-[0.18em] text-white sm:text-base"
+            >TAILWIND<span class="text-electric">.SETUP</span></span
+          >
+        </a>
+        <span class="hidden rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400 sm:inline-flex"
+          >v4 · static guide</span
+        >
+      </div>
+    </header>
+
+    <main id="top" class="mx-auto max-w-7xl px-5 pb-20 sm:px-8">
+      <section class="relative py-16 sm:py-24">
+        <div class="max-w-3xl">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-electric/30 bg-electric/5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-electric-soft">
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-electric"></span>
+            HTML + Tailwind CSS + JavaScript
+          </div>
+          <h1 class="font-display text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-7xl">
+            Ship your first<br />
+            <span class="text-electric [text-shadow:0_0_28px_rgba(32,215,255,.42)]">Tailwind build.</span>
+          </h1>
+          <p class="mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+            A practical, no-fuss setup for Tailwind CSS v4. Install the tools, wire up the CLI, and get a live
+            rebuild loop running in minutes.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#step-1"
+              class="inline-flex items-center gap-2 rounded-lg bg-electric px-5 py-3 font-display text-sm font-semibold text-ink transition hover:bg-electric-soft focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-ink"
+            >
+              Start setup <span aria-hidden="true">↓</span>
+            </a>
+            <a
+              href="#quick-reference"
+              class="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-5 py-3 font-display text-sm font-semibold text-slate-200 transition hover:border-electric/60 hover:text-electric-soft focus:outline-none focus:ring-2 focus:ring-electric"
+            >
+              Quick reference
+            </a>
+          </div>
+        </div>
+        <div class="absolute right-0 top-20 hidden w-56 select-none font-mono text-[10px] leading-7 text-electric/20 lg:block">
+          <div>01 / INSTALL</div>
+          <div>02 / INITIALIZE</div>
+          <div>03 / COMPILE</div>
+          <div>04 / CONNECT</div>
+          <div class="mt-4 h-px w-full bg-gradient-to-r from-electric/40 to-transparent"></div>
+          <div class="mt-3 text-electric/40">READY_TO_BUILD_</div>
+        </div>
+      </section>
+
+      <div class="grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <aside class="hidden lg:block">
+          <div class="sticky top-8">
+            <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500">On this page</p>
+            <nav id="side-nav" class="space-y-1 border-l border-slate-800 pl-3" aria-label="Guide sections">
+              <a href="#step-1" data-nav="step-1" class="nav-link block rounded-r-md border-l-2 border-transparent px-3 py-2 text-sm text-slate-500 transition hover:text-electric-soft">01 · Node & npm</a>
+              <a href="#step-2" data-nav="step-2" class="nav-link block rounded-r-md border-l-2 border-transparent px-3 py-2 text-sm text-slate-500 transition hover:text-electric-soft">02 · Create project</a>
+              <a href="#step-3" data-nav="step-3" class="nav-link block rounded-r-md border-l-2 border-transparent px-3 py-2 text-sm text-slate-500 transition hover:text-electric-soft">03 · Install Tailwind</a>
+              <a href="#step-4" data-nav="step-4" class="nav-link block rounded-r-md border-l-2 border-transparent px-3 py-2 text-sm text-slate-500 transition hover:text-electric-soft">04 · Add & connect</a>
+              <a href="#quick-reference" data-nav="quick-reference" class="nav-link block rounded-r-md border-l-2 border-transparent px-3 py-2 text-sm text-slate-500 transition hover:text-electric-soft">Quick reference</a>
+            </nav>
+            <div class="mt-8 rounded-xl border border-electric/15 bg-electric/5 p-4">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-electric">Current target</p>
+              <p class="mt-2 text-sm leading-6 text-slate-300">Tailwind CSS v4 with a CSS-first configuration.</p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="min-w-0 space-y-8">
+          <section id="step-1" data-step class="rounded-2xl border border-slate-800 bg-panel/80 p-5 shadow-neon sm:p-8">
+            <div class="flex gap-4">
+              <span class="step-number grid h-9 w-9 shrink-0 place-items-center rounded-full border border-electric/50 font-mono text-sm text-electric">01</span>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric">Prerequisite</p>
+                    <h2 class="mt-1 font-display text-2xl font-semibold text-white">Install Node.js & npm</h2>
+                  </div>
+                  <span class="rounded-full border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-500">1–2 min</span>
+                </div>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+                  npm ships with Node.js, so install Node once and verify both commands work in your terminal.
+                </p>
+
+                <div class="mt-6 overflow-hidden rounded-xl border border-slate-800 bg-ink/70">
+                  <div class="flex gap-1 border-b border-slate-800 p-2" role="tablist" aria-label="Operating system commands">
+                    <button data-os-tab="mac" class="os-tab rounded-md bg-electric/10 px-3 py-1.5 font-mono text-xs text-electric-soft" role="tab" aria-selected="true">macOS</button>
+                    <button data-os-tab="linux" class="os-tab rounded-md px-3 py-1.5 font-mono text-xs text-slate-500 transition hover:text-slate-200" role="tab" aria-selected="false">Linux</button>
+                    <button data-os-tab="windows" class="os-tab rounded-md px-3 py-1.5 font-mono text-xs text-slate-500 transition hover:text-slate-200" role="tab" aria-selected="false">Windows</button>
+                  </div>
+
+                  <div data-os-panel="mac" class="os-panel p-4 sm:p-5">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                      <span class="text-xs text-slate-500">Using Homebrew</span>
+                      <button data-copy-target="mac-command" class="copy-button rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                    </div>
+                    <pre id="mac-command" class="code-scroll overflow-x-auto font-mono text-sm leading-7 text-slate-200"><code><span class="text-electric">brew</span> install node</code></pre>
+                  </div>
+                  <div data-os-panel="linux" class="os-panel hidden p-4 sm:p-5">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                      <span class="text-xs text-slate-500">Ubuntu / Debian</span>
+                      <button data-copy-target="linux-command" class="copy-button rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                    </div>
+                    <pre id="linux-command" class="code-scroll overflow-x-auto font-mono text-sm leading-7 text-slate-200"><code><span class="text-electric">sudo</span> apt update
+<span class="text-electric">sudo</span> apt install nodejs npm</code></pre>
+                  </div>
+                  <div data-os-panel="windows" class="os-panel hidden p-4 sm:p-5">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                      <span class="text-xs text-slate-500">PowerShell / Command Prompt</span>
+                      <button data-copy-target="windows-command" class="copy-button rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                    </div>
+                    <pre id="windows-command" class="code-scroll overflow-x-auto font-mono text-sm leading-7 text-slate-200"><code><span class="text-electric">winget</span> install OpenJS.NodeJS.LTS</code></pre>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex items-start gap-3 rounded-lg border border-slate-800 bg-slate-900/45 p-4">
+                  <span class="mt-0.5 text-electric" aria-hidden="true">›_</span>
+                  <div class="flex-1">
+                    <p class="text-sm text-slate-300">Restart your terminal if you installed Node on Windows, then check:</p>
+                    <div class="mt-3 flex flex-wrap items-center gap-2">
+                      <code class="rounded bg-black/30 px-2 py-1 font-mono text-xs text-electric-soft">node -v</code>
+                      <code class="rounded bg-black/30 px-2 py-1 font-mono text-xs text-electric-soft">npm -v</code>
+                    </div>
+                  </div>
+                </div>
+                <label class="mt-5 flex cursor-pointer items-center gap-3 text-sm text-slate-500 hover:text-slate-300">
+                  <input data-check="step-1" type="checkbox" class="h-4 w-4 accent-cyan-300" />
+                  Node and npm are ready
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section id="step-2" data-step class="rounded-2xl border border-slate-800 bg-panel/80 p-5 shadow-neon sm:p-8">
+            <div class="flex gap-4">
+              <span class="step-number grid h-9 w-9 shrink-0 place-items-center rounded-full border border-electric/50 font-mono text-sm text-electric">02</span>
+              <div class="min-w-0 flex-1">
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric">Initialize</p>
+                <h2 class="mt-1 font-display text-2xl font-semibold text-white">Create your project</h2>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+                  Make a project folder, initialize package.json, and create the source and output directories.
+                </p>
+                <div class="mt-6 grid gap-4 md:grid-cols-2">
+                  <div class="rounded-xl border border-slate-800 bg-ink/70 p-4">
+                    <div class="mb-3 flex items-center justify-between">
+                      <span class="font-mono text-[10px] uppercase tracking-widest text-slate-500">macOS / Linux</span>
+                      <button data-copy-target="unix-project" class="copy-button rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                    </div>
+                    <pre id="unix-project" class="code-scroll overflow-x-auto font-mono text-xs leading-7 text-slate-300"><code>mkdir <span class="text-electric-soft">"Modern Website"</span>
+cd <span class="text-electric-soft">"Modern Website"</span>
+npm init -y
+mkdir src dist
+touch src/index.html src/input.css src/script.js</code></pre>
+                  </div>
+                  <div class="rounded-xl border border-slate-800 bg-ink/70 p-4">
+                    <div class="mb-3 flex items-center justify-between">
+                      <span class="font-mono text-[10px] uppercase tracking-widest text-slate-500">Windows PowerShell</span>
+                      <button data-copy-target="powershell-project" class="copy-button rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                    </div>
+                    <pre id="powershell-project" class="code-scroll overflow-x-auto font-mono text-xs leading-7 text-slate-300"><code>mkdir <span class="text-electric-soft">"Modern Website"</span>
+cd <span class="text-electric-soft">"Modern Website"</span>
+npm init -y
+mkdir src
+mkdir dist
+New-Item src/index.html -ItemType File
+New-Item src/input.css -ItemType File
+New-Item src/script.js -ItemType File</code></pre>
+                  </div>
+                </div>
+                <label class="mt-5 flex cursor-pointer items-center gap-3 text-sm text-slate-500 hover:text-slate-300">
+                  <input data-check="step-2" type="checkbox" class="h-4 w-4 accent-cyan-300" />
+                  Project folders and files are created
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section id="step-3" data-step class="rounded-2xl border border-slate-800 bg-panel/80 p-5 shadow-neon sm:p-8">
+            <div class="flex gap-4">
+              <span class="step-number grid h-9 w-9 shrink-0 place-items-center rounded-full border border-electric/50 font-mono text-sm text-electric">03</span>
+              <div class="min-w-0 flex-1">
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric">Install</p>
+                <h2 class="mt-1 font-display text-2xl font-semibold text-white">Add Tailwind CSS v4</h2>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+                  From inside the project folder, install Tailwind and its CLI. Tailwind v4 uses a CSS-first setup, so no tailwind.config.js is required.
+                </p>
+                <div class="mt-6 rounded-xl border border-electric/20 bg-electric/5 p-5">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <p class="font-mono text-[10px] uppercase tracking-widest text-electric">Terminal</p>
+                      <pre id="install-command" class="mt-3 overflow-x-auto font-mono text-sm leading-7 text-electric-soft"><code>npm install tailwindcss @tailwindcss/cli</code></pre>
+                    </div>
+                    <button data-copy-target="install-command" class="copy-button shrink-0 rounded-md border border-electric/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-electric-soft transition hover:border-electric hover:bg-electric/10">Copy</button>
+                  </div>
+                </div>
+                <label class="mt-5 flex cursor-pointer items-center gap-3 text-sm text-slate-500 hover:text-slate-300">
+                  <input data-check="step-3" type="checkbox" class="h-4 w-4 accent-cyan-300" />
+                  Tailwind packages are installed
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section id="step-4" data-step class="rounded-2xl border border-slate-800 bg-panel/80 p-5 shadow-neon sm:p-8">
+            <div class="flex gap-4">
+              <span class="step-number grid h-9 w-9 shrink-0 place-items-center rounded-full border border-electric/50 font-mono text-sm text-electric">04</span>
+              <div class="min-w-0 flex-1">
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric">Wire it up</p>
+                <h2 class="mt-1 font-display text-2xl font-semibold text-white">Add CSS, start the CLI, connect HTML</h2>
+                <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+                  Three small connections finish the setup: import Tailwind, run the watcher, and link the compiled stylesheet.
+                </p>
+
+                <div class="mt-6 space-y-4">
+                  <article class="rounded-xl border border-slate-800 bg-ink/70 p-4 sm:p-5">
+                    <div class="flex items-start gap-4">
+                      <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-electric/10 font-mono text-xs text-electric">A</span>
+                      <div class="min-w-0 flex-1">
+                        <h3 class="font-display font-semibold text-white">Add the Tailwind import</h3>
+                        <p class="mt-1 text-sm text-slate-500">In <code class="font-mono text-electric-soft">src/input.css</code>:</p>
+                        <div class="mt-3 flex items-start justify-between gap-3 rounded-lg border border-slate-800 bg-black/25 p-3">
+                          <pre id="css-import" class="overflow-x-auto font-mono text-sm leading-7 text-electric-soft"><code>@import "tailwindcss";</code></pre>
+                          <button data-copy-target="css-import" class="copy-button shrink-0 rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="rounded-xl border border-slate-800 bg-ink/70 p-4 sm:p-5">
+                    <div class="flex items-start gap-4">
+                      <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-electric/10 font-mono text-xs text-electric">B</span>
+                      <div class="min-w-0 flex-1">
+                        <h3 class="font-display font-semibold text-white">Start the Tailwind watcher</h3>
+                        <p class="mt-1 text-sm text-slate-500">Keep this terminal running while you work.</p>
+                        <div class="mt-3 flex items-start justify-between gap-3 rounded-lg border border-slate-800 bg-black/25 p-3">
+                          <pre id="watch-command" class="code-scroll overflow-x-auto font-mono text-sm leading-7 text-electric-soft"><code>npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch</code></pre>
+                          <button data-copy-target="watch-command" class="copy-button shrink-0 rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="rounded-xl border border-slate-800 bg-ink/70 p-4 sm:p-5">
+                    <div class="flex items-start gap-4">
+                      <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-electric/10 font-mono text-xs text-electric">C</span>
+                      <div class="min-w-0 flex-1">
+                        <h3 class="font-display font-semibold text-white">Link the output in HTML</h3>
+                        <p class="mt-1 text-sm text-slate-500">Add this inside <code class="font-mono text-electric-soft">src/index.html</code>:</p>
+                        <div class="mt-3 flex items-start justify-between gap-3 rounded-lg border border-slate-800 bg-black/25 p-3">
+                          <pre id="html-link" class="overflow-x-auto font-mono text-sm leading-7 text-electric-soft"><code>&lt;link href="../dist/output.css" rel="stylesheet"&gt;</code></pre>
+                          <button data-copy-target="html-link" class="copy-button shrink-0 rounded-md border border-slate-700 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 transition hover:border-electric/60 hover:text-electric-soft">Copy</button>
+                        </div>
+                        <p class="mt-3 text-sm text-slate-500">Test it with:</p>
+                        <pre class="mt-2 overflow-x-auto rounded-lg border border-slate-800 bg-black/25 p-3 font-mono text-sm leading-7 text-slate-200"><code>&lt;h1 class="text-3xl font-bold underline"&gt;Hello World!&lt;/h1&gt;</code></pre>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <label class="mt-5 flex cursor-pointer items-center gap-3 text-sm text-slate-500 hover:text-slate-300">
+                  <input data-check="step-4" type="checkbox" class="h-4 w-4 accent-cyan-300" />
+                  The stylesheet is compiling and linked
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section id="quick-reference" class="scroll-mt-8 rounded-2xl border border-electric/20 bg-gradient-to-br from-electric/10 via-panel/90 to-panel/90 p-5 shadow-neon sm:p-8">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric">Keep nearby</p>
+                <h2 class="mt-1 font-display text-2xl font-semibold text-white">Quick reference</h2>
+              </div>
+              <span id="progress-label" class="font-mono text-xs text-slate-500">0 / 4 complete</span>
+            </div>
+
+            <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-slate-800">
+              <div id="progress-bar" class="h-full w-0 rounded-full bg-electric transition-all duration-500 [box-shadow:0_0_16px_rgba(32,215,255,.7)]"></div>
+            </div>
+
+            <div class="mt-7 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-xl border border-slate-800 bg-ink/55 p-4">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-slate-500">Check versions</p>
+                <p class="mt-3 font-mono text-sm text-electric-soft">node -v<br />npm -v</p>
+              </div>
+              <div class="rounded-xl border border-slate-800 bg-ink/55 p-4">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-slate-500">Stop Tailwind</p>
+                <p class="mt-3 font-mono text-sm text-electric-soft">Ctrl + C</p>
+              </div>
+              <div class="rounded-xl border border-slate-800 bg-ink/55 p-4 sm:col-span-2">
+                <p class="font-mono text-[10px] uppercase tracking-widest text-slate-500">Project structure</p>
+                <pre class="mt-3 overflow-x-auto font-mono text-xs leading-6 text-slate-300"><code>Modern Website/
+├── dist/output.css
+├── src/index.html
+├── src/input.css
+├── src/script.js
+├── package.json
+└── package-lock.json</code></pre>
+              </div>
+            </div>
+
+            <div class="mt-7 border-t border-slate-800 pt-6">
+              <p class="text-sm leading-7 text-slate-400">
+                <span class="font-semibold text-slate-200">VS Code tip:</span> install <span class="text-electric-soft">Tailwind CSS IntelliSense</span>. If the editor flags <code class="font-mono text-electric-soft">@theme</code>, set CSS › Lint: Unknown At Rules to <span class="text-electric-soft">Ignore</span>.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-cyan-300/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-8 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <span class="font-mono">TAILWIND.SETUP / v4</span>
+        <span>Built for a fast, static HTML workflow.</span>
+        <span class="font-mono text-electric-soft">Built by IshfaqBuilds</span>
+      </div>
+    </footer>
+
+    <div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-4 rounded-full border border-electric/40 bg-slate-950/95 px-4 py-2 font-mono text-xs text-electric-soft opacity-0 shadow-neon transition-all duration-300" role="status" aria-live="polite">
+      Copied to clipboard
+    </div>
+
+    <script>
+      const toast = document.querySelector("#toast");
+      let toastTimer;
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.remove("translate-y-4", "opacity-0");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add("translate-y-4", "opacity-0");
+        }, 1800);
+      }
+
+      function plainText(element) {
+        return element.innerText.replace(/\u00a0/g, " ").trim();
+      }
+
+      document.querySelectorAll("[data-copy-target]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const target = document.getElementById(button.dataset.copyTarget);
+          const text = plainText(target);
+          try {
+            await navigator.clipboard.writeText(text);
+            button.textContent = "Copied";
+            showToast("Copied to clipboard");
+          } catch {
+            showToast("Select and copy the command");
+          }
+          setTimeout(() => {
+            button.textContent = "Copy";
+          }, 1400);
+        });
+      });
+
+      document.querySelectorAll("[data-os-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const os = tab.dataset.osTab;
+          document.querySelectorAll("[data-os-tab]").forEach((item) => {
+            const selected = item === tab;
+            item.setAttribute("aria-selected", selected);
+            item.classList.toggle("bg-electric/10", selected);
+            item.classList.toggle("text-electric-soft", selected);
+            item.classList.toggle("text-slate-500", !selected);
+          });
+          document.querySelectorAll("[data-os-panel]").forEach((panel) => {
+            panel.classList.toggle("hidden", panel.dataset.osPanel !== os);
+          });
+        });
+      });
+
+      const checks = [...document.querySelectorAll("[data-check]")];
+      const progressBar = document.querySelector("#progress-bar");
+      const progressLabel = document.querySelector("#progress-label");
+
+      function updateProgress() {
+        const complete = checks.filter((check) => check.checked).length;
+        const percent = (complete / checks.length) * 100;
+        progressBar.style.width = `${percent}%`;
+        progressLabel.textContent = `${complete} / ${checks.length} complete`;
+        checks.forEach((check) => {
+          check.closest("[data-step]")?.classList.toggle("step-done", check.checked);
+        });
+      }
+
+      checks.forEach((check) => check.addEventListener("change", updateProgress));
+
+      const sections = [...document.querySelectorAll("[data-step], #quick-reference")];
+      const navLinks = [...document.querySelectorAll("[data-nav]")];
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          navLinks.forEach((link) => link.classList.toggle("active-link", link.dataset.nav === visible.target.id));
+        },
+        { rootMargin: "-18% 0px -65% 0px", threshold: [0, 0.25, 0.5] }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+      updateProgress();
+    </script>
+  </body>
+</html>
